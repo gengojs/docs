@@ -1,22 +1,30 @@
 'use strict';
-var jsdom = require("jsdom"),
-  gutil = require("gulp-util"),
-  through2 = require("through2"),
-  pluginName = "gulp-dom",
-  Path = require('path');
+var jsdom     = require("jsdom"),
+  gutil       = require("gulp-util"),
+  through2    = require("through2"),
+  pluginName  = "gulp-dom",
+  Path        = require('path'),
+  _           = require('lodash');
 
 function getDir(path) {
   return /dist\/([\s\S]+)\/[\s\S]+/g
     .exec(Path.normalize(path))[1];
 }
 
-function getFileName(path){
-  return /dist\/[\s\S]+\/([\s\S]+)/g
+function getFileName(path, strip) {
+  var result = /dist\/[\s\S]+\/([\s\S]+)/g
     .exec(Path.normalize(path))[1];
+  if (strip) return result.replace('.html', '');
+  else return result;
+}
+
+function toSingleQuotes(str) {
+  return str.replace(/\"/g, '\'');
 }
 
 function mutator($, window, path) {
   var json = {};
+  json[getFileName(path, true)] = {};
   var dir = getDir(path);
   var counts = {
     p: 1,
@@ -24,18 +32,21 @@ function mutator($, window, path) {
     li: 1
   };
   $('div.gengo p').each(function () {
-    json[getFileName(path).replace('.html', '') + '.p' + counts.p++] = $(this).html().replace(/\"/g, '\'');
+    var p = 'p' + counts.p++;
+    json[getFileName(path, true)][p] = toSingleQuotes($(this).html());
   });
 
   $('ul').each(function () {
-    counts.ul++;
-    var ul = '.ul' + counts.ul;
+    var ul = 'ul' + counts.ul++;
+    counts.li = 1;
     $(this).find('li.gengo').each(function () {
-      counts.li++;
-      var li = '.li' + counts.li;
-      json[getFileName(path).replace('.html', '') + ul + li] = $(this).html().replace(/\"/g, '\'');
+      var li = 'li' + counts.li++;
+      if (!json[getFileName(path, true)][ul])
+        json[getFileName(path, true)][ul] = {};
+      json[getFileName(path, true)][ul][li] = toSingleQuotes($(this).html());
     });
   });
+  console.log(getFileName(path, true), json);
   return JSON.stringify(json, null, 2);
 }
 

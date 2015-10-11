@@ -1,6 +1,6 @@
-var markdown = require('markdown-it'),
-		gutil = require('gulp-util'),
-		through = require('through2');
+var markdown  = require('markdown-it'),
+		gutil     = require('gulp-util'),
+		through   = require('through2');
 
 var md = markdown({html:true})
         .use(require('markdown-it-container'), 'gengo')

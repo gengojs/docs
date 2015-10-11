@@ -1,4 +1,3 @@
 {
-  "intro.p1": "gengo.js is a server agnostic i18n/l10n library that is powered by it's very small <a href='https://github.com/gengojs/core'>core</a>.\nAlong with the core, it is also managed by six plugins.\nThe combinations of the these create a powerful and a unique library that enables developers to take over the core and extend its capabilities.\nThe core is essentially a unit that provides the basics such as a way of accessing a plugin's options or the plugin itself.",
-  "intro.p2": "You can simply initialize gengo.js by requiring and configuring it.\nSee Options."
+  "intro": {}
 }

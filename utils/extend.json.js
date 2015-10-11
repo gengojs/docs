@@ -1,6 +1,6 @@
 var fs 		= require('fs-extra'),
-    Path 	= require('path'),
-    _		= require('lodash');
+    Path  = require('path'),
+    _     = require('lodash');
 
 function getDirectories(path) {
   return fs.readdirSync(path).filter(function(file) {
@@ -18,9 +18,10 @@ module.exports = function(src, dest){
 		files.forEach(function(file){
 			var f = dir + Path.sep + file;
       var json = fs.readJsonSync(f);
+      console.log(file, json)
 			if(buffer.length === 0 && !_.isEmpty(json)) buffer.push(json);
 			else {
-				if(!_.isEmpty(json)) buffer.concat(json);
+				if(!_.isEmpty(json)) buffer[0] = _.merge({}, buffer[0], json);
 			}
 		});
 		fs.writeJsonSync(dest + directory + '.json',buffer[0]);
