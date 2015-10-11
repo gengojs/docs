@@ -1,0 +1,30 @@
+{
+  "name": "docs",
+  "version": "1.0.0",
+  "private": true,
+  "description": "The documentation for gengo.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gengojs/docs.git"
+  },
+  "author": "iwatakeshi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gengojs/docs/issues"
+  },
+  "homepage": "https://github.com/gengojs/docs#readme",
+  "devDependencies": {
+    "fs-extra": "^0.24.0",
+    "gulp": "^3.9.0",
+    "gulp-util": "^3.0.6",
+    "jsdom": "^6.5.1",
+    "lodash": "^3.10.1",
+    "markdown-it": "^5.0.0",
+    "markdown-it-container": "^2.0.0",
+    "through2": "^2.0.0"
+  }
+}

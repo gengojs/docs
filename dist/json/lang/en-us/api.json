@@ -1,0 +1,7 @@
+{
+  "api.p1": "The following API is respect to the default plugins and may vary. Please refer the the developer's plugin page.",
+  "api.p2": "When you pass a phrase, there are three notations that can be used to tell gengo how to look up your definitions. See Dictionary for setup.",
+  "api.ul2.li2": "\n                \t\t\tThe phrase to look for in the requested locale.\n                \t\t",
+  "api.ul4.li3": "The phrase to look for in the requested locale.",
+  "api.ul4.li4": "The locale to override."
+}

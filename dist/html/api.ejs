@@ -1,0 +1,60 @@
+<h2>API</h2>
+<div class="gengo">
+<p><%= __("api.p1") %></p>
+</div>
+<h3>Input</h3>
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Data Type</th>
+                <th>Option</th>
+                <th>Description</th>
+                <th>Example</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>String</td>
+                <td>phrase</td>
+                <td>
+                	<ul>
+                		<li class="gengo">
+                			The phrase to look for in the requested locale.
+                		</li>
+                	</ul>
+                </td>
+                <td>
+                	<pre>                		<code class="language-javascript">
+                			__("phrase");
+                		</code>
+                	</pre>
+                </td>
+            </tr>
+            <tr>
+                <td>Object</td>
+                <td>
+                	<ul>
+                		<li>phrase</li>
+                		<li>locale</li>
+                	</ul>
+                </td><td>
+                	<ul>
+                		<li class="gengo">The phrase to look for in the requested locale.</li>
+                		<li class="gengo">The locale to override.</li>
+                	</ul>
+                </td><td>
+                	<pre>						<code class="language-javascript">
+							__({phrase:/*String, Array*/});
+							__({locale:/*String*/});
+                		</code>
+                	</pre>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<h3>Notation</h3>
+<div class="gengo">
+<p><%= __("api.p2") %></p>
+</div>

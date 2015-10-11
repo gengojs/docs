@@ -1,0 +1,46 @@
+<h2>Introduction</h2>
+<div class="gengo">
+<p>gengo.jsは非常に小さな<a href="https://github.com/gengojs/core">コア</a>によって供給され、どんなノードサーバーにでも使えるi18n/l10nライブラリです。
+コアと一緒に、それはまた、六つのプラグインによって管理されています。これらの組み合わせは、強力とユニークなライブラリーを引き継ぎ、ディベロッパーをその機能を拡張させてくれるライブラリーです。
+コアは、本質的に、このようなプラグインのオプションやプラグイン自体にアクセスする方法として、基礎を提供するユニットです。</p>
+</div>
+<h2>Usage</h2>
+<pre><code class="language-bash">#npm install
+sudo npm install gengojs --save
+</code></pre>
+<h3>Initialize</h3>
+<div class="gengo">
+<p>簡単にgengo.jsを初期化することができます。Optionsを参照してください。</p>
+</div>
+<h4>Express</h4>
+<pre><code class="language-javascript">var gengo = require('gengojs');
+var app = require('express')();
+
+app.use(gengo({
+	'backend': { 'directory': __dirname + '/config/locales' },
+	'header' : { 'default': 'en-us', supported: ['ja'] },
+	'router': { 'enabled': true }
+}));
+</code></pre>
+<h4>Koa</h4>
+<pre><code class="language-javascript">var gengo = require('gengojs/koa');
+var app = require('koa')();
+
+app.use(gengo({
+	'backend': { 'directory': __dirname + '/config/locales' },
+	'header' : { 'default': 'en-us', supported: ['ja'] },
+	'router': { 'enabled': true }
+}));
+</code></pre>
+<h4>Hapi</h4>
+<pre><code class="language-javascript">var gengo = require('gengojs/hapi');
+var server = new require('hapi').Server();
+
+server.register(gengo({
+	'backend': { 'directory': __dirname + '/config/locales' },
+	'header' : { 'default': 'en-us', supported: ['ja'] },
+	'router': { 'enabled': true }
+}), function(error) {
+  if (error) console.log('An error occurred: ' + error);
+});
+</code></pre>
