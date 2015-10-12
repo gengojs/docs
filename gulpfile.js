@@ -3,6 +3,7 @@ var gulp 		= require('gulp'),
 		md			= require('./utils/markdown'),
 		extend 	= require('./utils/extend.json'),
 		i18n		= require('./utils/html2i18n'),
+		rimraf  = require('rimraf'),
 		Path		= require('path');
 
 
@@ -28,5 +29,12 @@ gulp.task('html2i18n', ['html2json'], function(){
 		.pipe(gulp.dest('dist/html'));
 });
 
+gulp.task('clean:html', ['html2i18n'],function (cb) {
+	rimraf('dist/lang',cb);
+});
 
-gulp.task('default', ['markdown', 'html2json', 'extend', 'html2i18n']);
+gulp.task('clean:json', ['html2i18n'],function (cb) {
+	rimraf('dist/json/lang',cb);
+});
+
+gulp.task('default', ['markdown', 'html2json', 'extend', 'html2i18n', 'clean:json', 'clean:html']);
