@@ -25,6 +25,8 @@ __('Hello {{name}}, is today {{weather}}?', { name:'Bob', weather: 'sunny' });
 
 ##### Phrase Notation
 
+::: gengo
+
 ```javascript
 // Assuming the locale === 'ja':
 
@@ -38,7 +40,11 @@ __('Hello %s', 'Bob');
  __('Hello {{name}}', {name:'Bob'});
 ```
 
+:::
+
 ##### Bracket Notation
+
+::: gengo
 
 ```javascript
 // Assuming the locale === 'ja':
@@ -56,7 +62,11 @@ __('[Hello %].informal', 'Bob');
 __('[Hello {{name}}].informal', {name:'Bob'});
 ```
 
+:::
+
 ##### Dot Notation
+
+::: gengo
 
 ```javascript
 // Assuming the locale === 'ja':
@@ -71,6 +81,8 @@ __('greeting.hello.person.informal', 'Bob');
 __('greeting.hello.person.informal', {name:'Bob'});
 ```
 
+:::
+
 #### Message Format
 
 ::: gengo
@@ -81,6 +93,8 @@ to overcome the problem.
 ::: gengo
 To use message-format, simply set the parser using the API or in the options.
 :::
+
+::: gengo
 
 ```javascript
 // Assuming the locale === 'en-us':
@@ -97,3 +111,5 @@ __('[You took {n,numbers} pictures].since.date', { n:4000, d:new Date() }, { par
 // returns "You took 4,000 pictures since Jan 1, 2015 9:33:04 AM"
 __('pictures.since.date', { n:4000, d:new Date() }, { format: 'parser' });
 ```
+
+:::

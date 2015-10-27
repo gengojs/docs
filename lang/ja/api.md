@@ -23,6 +23,8 @@ __('Hello {{name}}, is today {{weather}}?', { name:'Bob', weather: 'sunny' });
 
 ##### Phrase Notation
 
+::: gengo
+
 ```javascript
 // ロケールを === 'ja'に仮定すると:
 
@@ -36,8 +38,11 @@ __('Hello %s', 'Bob');
  __('Hello {{name}}', {name:'Bob'});
 ```
 
+:::
 
 ##### Bracket Notation
+
+::: gengo
 
 ```javascript
 // ロケールを === 'ja'に仮定すると:
@@ -55,7 +60,11 @@ __('[Hello %].informal', 'Bob');
 __('[Hello {{name}}].informal', {name:'Bob'});
 ```
 
+:::
+
 ##### Dot Notation
+
+::: gengo
 
 ```javascript
 // ロケールを === 'ja'に仮定すると:
@@ -70,6 +79,8 @@ __('greeting.hello.person.informal', 'Bob');
 __('greeting.hello.person.informal', {name:'Bob'});
 ```
 
+:::
+
 #### Message Format
 
 ::: gengo
@@ -79,6 +90,8 @@ __('greeting.hello.person.informal', {name:'Bob'});
 ::: gengo
 message-formatを使用するには、APIまたはオプションでを使用してパーサーを設定します。
 :::
+
+::: gengo
 
 ```javascript
 // ロケールを === 'en-us'に仮定すると:
@@ -95,3 +108,5 @@ __('[You took {n,numbers} pictures].since.date', { n:4000, d:new Date() }, { par
 //「You took 4,000 pictures since Jan 1, 2015 9:33:04 AM」に戻ります
 __('pictures.since.date', { n:4000, d:new Date() }, { format: 'parser' });
 ```
+
+:::

@@ -29,23 +29,31 @@ function mutator($, window, path) {
   var counts = {
     p: 1,
     ul: 1,
-    li: 1
+    li: 1,
+    code:1
   };
   $('div.gengo p').each(function () {
     var p = 'p' + counts.p++;
     json[getFileName(path, true)][p] = toSingleQuotes($(this).html());
   });
 
-  $('ul').each(function () {
-    var ul = 'ul' + counts.ul++;
-    counts.li = 1;
-    $(this).find('li.gengo').each(function () {
-      var li = 'li' + counts.li++;
-      if (!json[getFileName(path, true)][ul])
-        json[getFileName(path, true)][ul] = {};
-      json[getFileName(path, true)][ul][li] = toSingleQuotes($(this).html());
-    });
+  // $('ul').each(function () {
+  //   var ul = 'ul' + counts.ul++;
+  //   counts.li = 1;
+  //   $(this).find('li.gengo').each(function () {
+  //     var li = 'li' + counts.li++;
+  //     if (!json[getFileName(path, true)][ul])
+  //       json[getFileName(path, true)][ul] = {};
+  //     json[getFileName(path, true)][ul][li] = toSingleQuotes($(this).html());
+  //   });
+  // });
+  
+  $('div.gengo code').each(function(){
+    var code = 'code' + counts.code++;
+    console.log($(this).html());
+    json[getFileName(path, true)][code] = toSingleQuotes($(this).html());
   });
+  
   console.log(getFileName(path, true), json);
   return JSON.stringify(json, null, 2);
 }
@@ -70,7 +78,7 @@ module.exports = function () {
           if (errors) {
             return stream.emit("error", new gutil.PluginError(pluginName, "Error parsing document: " + file.path));
           }
-          var mutated = mutator.apply(window, [window.$, window, path]);;
+          var mutated = mutator.apply(window, [window.$, window, path]);
           file.contents = new Buffer(mutated);
           file.path = gutil.replaceExtension(file.path, '.json');
           callback(null, file);

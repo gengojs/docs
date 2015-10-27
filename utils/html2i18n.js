@@ -25,26 +25,36 @@ function i18n(tag) {
   return '<%= __("' + tag + '") %>';
 }
 
+function unescapedi18n(tag){
+  return '<%= _.unescape(__("' + tag + '")) %>';
+}
+
 function mutator($, window, path) {
   var counts = {
     p: 1,
     ul: 1,
-    li: 1
+    li: 1,
+    code:1
   };
   $('div.gengo p').each(function () {
     var tag = getFileName(path).replace('.html', '') + '.p' + counts.p++;
     $(this).text(i18n(tag));
   });
-
-  $('ul').each(function () {
-    var ul = 'ul' + counts.ul++;
-    counts.li = 1;
-    $(this).find('li.gengo').each(function () {
-      var li = 'li' + counts.li++;
-      var tag = getFileName(path).replace('.html', '') + '.ul' + counts.ul + '.li' + counts.li;
-      $(this).text(i18n(tag));
-    });
+  
+  $('div.gengo code').each(function () {
+    var tag = getFileName(path).replace('.html', '') + '.code' + counts.p++;
+    $(this).text(unescapedi18n(tag));
   });
+
+  // $('ul').each(function () {
+  //   var ul = 'ul' + counts.ul++;
+  //   counts.li = 1;
+  //   $(this).find('li.gengo').each(function () {
+  //     var li = 'li' + counts.li++;
+  //     var tag = getFileName(path).replace('.html', '') + '.ul' + counts.ul + '.li' + counts.li;
+  //     $(this).text(i18n(tag));
+  //   });
+  // });
 
   return stripScripts.apply(this.document, [($('body').html())]);
 }
