@@ -1,4 +1,4 @@
-## Introduction
+# Introduction
 
 ::: gengo
 gengo.jsは非常に小さな[コア](https://github.com/gengojs/core)によって供給され、どんなノードサーバーにでも使えるi18n/l10nライブラリです。
@@ -7,20 +7,20 @@ gengo.jsは非常に小さな[コア](https://github.com/gengojs/core)によっ�
 :::
 
 
-## Usage
+# Usage
 
 ```bash
 #npm install
 sudo npm install gengojs --save
 ```
 
-### Initialize
+## Initialize
 
 ::: gengo
 簡単にgengo.jsを初期化することができます。Optionsを参照してください。
 :::
 
-#### Express
+### Express
 
 ```javascript
 var gengo = require('gengojs');
@@ -33,7 +33,7 @@ app.use(gengo({
 }));
 ```
 
-#### Koa
+### Koa
 
 ```javascript
 var gengo = require('gengojs/koa');
@@ -46,7 +46,7 @@ app.use(gengo({
 }));
 ```
 
-#### Hapi
+### Hapi
 
 ```javascript
 var gengo = require('gengojs/hapi');

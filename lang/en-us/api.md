@@ -1,133 +1,99 @@
 ## API
 
 ::: gengo
-The following API is respect to the default plugins and may vary. Please refer the the developer's plugin page.
+The following API is respect to the default plugins and may vary. Please refer the the developer's plugin documentation.
 :::
 
-### Input
+### i18n
 
-<div class="table-responsive">
-    <table class="table table-hover">
-        <thead>
-            <tr>
-                <th>Data Type</th>
-                <th>Option</th>
-                <th>Description</th>
-                <th>Example</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>String</td>
-                <td>phrase</td>
-                <td>
-                	<ul>
-                		<li class="gengo">The phrase to look for in the requested locale.</li>
-                	</ul>
-                </td>
-                <td>
-                	<pre>
-                		<code class="language-javascript">
-                			__("phrase");
-                		</code>
-                	</pre>
-                </td>
-            </tr>
-            <tr>
-                <td>Object</td>
-                <td>
-                	<ul>
-                		<li>phrase</li>
-                		<li>locale</li>
-                	</ul>
-                <td>
-                	<ul>
-                		<li class="gengo">The phrase to look for in the requested locale.</li>
-                		<li class="gengo">The locale to override.</li>
-                	</ul>
-                <td>
-                	<pre>
-						<code class="language-javascript">
-							__({phrase:/*String, Array*/});
-							__({locale:/*String*/});
-                		</code>
-                	</pre>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+#### API
 
-### Notation
+```javascript
+// String
+__('Hello');
+// Object
+__({ phrase:'Hello', locale: 'ja', parser:'format' });
+
+// Array
+__('Hello %s, is today %s?', ['Bob', 'sunny']);
+// Object
+__('Hello {{name}}, is today {{weather}}?', { name:'Bob', weather: 'sunny' });
+
+```
+
+#### Notations
+
+##### Phrase Notation
+
+```javascript
+// Assuming the locale === 'ja':
+
+// A basic phrase returns 'こんにちは'
+__('Hello');
+
+// A basic phrase with sprintf returns 'Bob こんにちは'
+__('Hello %s', 'Bob');
+
+// A basic phrase with interpolation returns 'Bob こんにちは'
+ __('Hello {{name}}', {name:'Bob'});
+```
+
+##### Bracket Notation
+
+```javascript
+// Assuming the locale === 'ja':
+
+// A basic bracket phrase returns 'こんにちは'
+__('[Hello]');
+
+// A basic bracket phrase with nested keys returns 'おっす'
+__('[Hello].informal');
+
+// A basic bracket phrase with sprintf returns 'Bob おっす'
+__('[Hello %].informal', 'Bob');
+
+// A basic bracket phrase with interpolation returns 'Bob おっす'
+__('[Hello {{name}}].informal', {name:'Bob'});
+```
+
+##### Dot Notation
+
+```javascript
+// Assuming the locale === 'ja':
+
+// A basic dot phrase returns 'おっす'
+__('greeting.hello.informal');
+
+// A basic dot phrase with sprintf returns 'Bob おっす'
+__('greeting.hello.person.informal', 'Bob');
+
+// A basic dot phrase with interpolation returns 'Bob おっす'
+__('greeting.hello.person.informal', {name:'Bob'});
+```
+
+#### Message Format
 
 ::: gengo
-When you pass a phrase, there are three notations that can be used to tell gengo how to look up your definitions. See Dictionary for setup.
+Because plurality is not supported, the default parser uses [message-format](https://github.com/format-message/message-format)
+to overcome the problem.
 :::
 
-<div class="table-responsive">
-    <table class="table table-hover">
-        <thead>
-            <tr>
-                <th>Notation</th>
-                <th>Description</th>
-                <th>Example</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Phrase</td>
-                <td>
-                    <ul>
-                        <li class="gengo">Searches for the definition directly, assuming there are no sub-keys for the phrase in your dictionary.</li>
-                    </ul>
-                </td>
-                <td>
-                    <pre>
-                        <code class="language-javascript">
-                            // Phrase
-                            __("Hello World");
-                        </code>
-                    </pre>
-                </td>
-            </tr>
-            <tr>
-                <td>Brackets</td>
-                <td>
-                    <ul>
-                        <li class="gengo">Searches for the definition assuming a phrase may contain a sub-key or a key that is dotted and may also contain a sub-key.</li>
-                    </ul>
-                </td>
-                <td>
-                    <pre>
-                        <code class="language-javascript">
-                            // Phrase
-                            __("[Hello World]");
-                            // Phrase + subkey
-                            __("[Hello World].subkey");
-                            // Dotted key
-                            __("[navbar.home]");
-                            // Dotted key + subkey
-                            __("[navbar.home].subkey");
-                        </code>
-                    </pre>
-                </td>
-            </tr>
-            <tr>
-                <td>Dot</td>
-                <td>
-                    <ul>
-                        <li class="gengo">Searches for the definition by searching the dictionary's object in a dotted way.</li>
-                    </ul>
-                </td>
-                <td>
-                <pre>
-                    <code class="language-javascript">
-                        // Dotted parsing
-                        __("navbar.home.subkey");
-                    </code>
-                </pre>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+::: gengo
+To use message-format, simply set the parser using the API or in the options.
+:::
+
+```javascript
+// Assuming the locale === 'en-us':
+
+// A basic phrase with message formatting
+// returns "You took 4,000 pictures since Jan 1, 2015 9:33:04 AM"
+__('You took {n,number} pictures since {d,date} {d,time}', { n:4000, d:new Date() }, { parser: 'format' });
+
+// A basic bracket phrase with message formatting
+// returns "You took 4,000 pictures since Jan 1, 2015 9:33:04 AM"
+__('[You took {n,numbers} pictures].since.date', { n:4000, d:new Date() }, { parser: 'format' });
+
+// A basic dot phrase with message formatting
+// returns "You took 4,000 pictures since Jan 1, 2015 9:33:04 AM"
+__('pictures.since.date', { n:4000, d:new Date() }, { format: 'parser' });
+```
