@@ -50,7 +50,6 @@ function mutator($, window, path) {
   
   $('div.gengo code').each(function(){
     var code = 'code' + counts.code++;
-    console.log($(this).html());
     json[getFileName(path, true)][code] = toSingleQuotes($(this).html());
   });
   

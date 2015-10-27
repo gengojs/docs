@@ -42,7 +42,7 @@ function mutator($, window, path) {
   });
   
   $('div.gengo code').each(function () {
-    var tag = getFileName(path).replace('.html', '') + '.code' + counts.p++;
+    var tag = getFileName(path).replace('.html', '') + '.code' + counts.code++;
     $(this).text(unescapedi18n(tag));
   });
 
