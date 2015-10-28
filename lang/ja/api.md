@@ -116,7 +116,7 @@ __('pictures.since.date', { n:4000, d:new Date() }, { format: 'parser' });
 ### API
 
 ::: gengo
-The following API is respect to the default localization plugin. Please refer the the developer's plugin documentation.
+次のAPIは、デフォルトのローカライゼーションのプラグインに関します。 開発者のプラグインのドキュメントを参照してください。
 :::
 
 

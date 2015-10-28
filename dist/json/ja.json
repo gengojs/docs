@@ -3,7 +3,7 @@
     "p1": "次のAPIは、<a href='https://github.com/gengojs?utf8=%E2%9C%93&amp;query=plugin'>デフォルトのプラグイン</a>に関してであるとは異なる場合があります。開発者のプラグインのドキュメントを参照してください。",
     "p2": "ことばの複数回また物の数はサポートされていないため、デフォルトのパーサは、問題を克服するために、<a href='https://github.com/format-message/message-format'>message-format</a>を使用しています。",
     "p3": "message-formatを使用するには、APIまたはオプションでを使用してパーサーを設定します。",
-    "p4": "The following API is respect to the default localization plugin. Please refer the the developer's plugin documentation.",
+    "p4": "次のAPIは、デフォルトのローカライゼーションのプラグインに関します。 開発者のプラグインのドキュメントを参照してください。",
     "code1": "// ロケールを === 'ja'に仮定すると:\n\n// 基本的なフレーズは「こんにちは」に戻ります\n__('Hello');\n\n// 基本的なフレーズとsprintfは「Bob こんにちは」に戻ります\n__('Hello %s', 'Bob');\n\n//　基本的なフレーズと文字列補完は 「Bob こんにちは」に戻ります\n __('Hello {{name}}', {name:'Bob'});\n",
     "code2": "// ロケールを === 'ja'に仮定すると:\n\n// 基本的なブラケットフレーズは「こんにちは」に戻ります\n__('[Hello]');\n\n// 基本的なブラケットフレーズとネストされたキーは「おっす」に戻ります\n__('[Hello].informal');\n\n// 基本的なブラケットフレーズとネストされたキーとsprintfは「おっす、Bob」に戻ります\n__('[Hello %].informal', 'Bob');\n\n// 基本的なブラケットフレーズとネストされたキーと文字列補完は「おっす、Bob」に戻ります\n__('[Hello {{name}}].informal', {name:'Bob'});\n",
     "code3": "// ロケールを === 'ja'に仮定すると:\n\n// 基本的なドットフレーズは「おっす」に戻ります\n__('greeting.hello.informal');\n\n// 基本的なドットフレーズとsprintfは「Bob、 おっす」に戻ります\n__('greeting.hello.person.informal', 'Bob');\n\n// 基本的なドットフレーズと文字列補完は「Bob、おっす」に戻ります\n__('greeting.hello.person.informal', { name:'Bob' });\n",
