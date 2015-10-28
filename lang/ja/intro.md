@@ -7,14 +7,14 @@ gengo.jsは非常に小さな[コア](https://github.com/gengojs/core)によっ�
 :::
 
 
-# Usage
+## Usage
 
 ```bash
 #npm install
 sudo npm install gengojs --save
 ```
 
-## Initialize
+### Initialize
 
 ::: gengo
 簡単にgengo.jsを初期化することができます。Optionsを参照してください。

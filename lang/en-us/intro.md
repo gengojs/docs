@@ -1,4 +1,4 @@
-## Introduction
+# Introduction
 
 :::gengo
 gengo.js is a server agnostic i18n/l10n library that is powered by it's very small [core](https://github.com/gengojs/core).
@@ -22,7 +22,7 @@ You can simply initialize gengo.js by requiring and configuring it.
 See Options.
 :::
 
-#### Express
+### Express
 
 ```javascript
 var gengo = require('gengojs');
@@ -35,7 +35,7 @@ app.use(gengo({
 }));
 ```
 
-#### Koa
+### Koa
 
 ```javascript
 var gengo = require('gengojs/koa');
@@ -48,7 +48,7 @@ app.use(gengo({
 }));
 ```
 
-#### Hapi
+### Hapi
 
 ```javascript
 var gengo = require('gengojs/hapi');

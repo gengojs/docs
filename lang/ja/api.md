@@ -1,7 +1,7 @@
 # API
 
 ::: gengo
-次のAPIは、デフォルトのプラグインに関してであるとは異なる場合があります。開発者のプラグインのドキュメントを参照してください。
+次のAPIは、[デフォルトのプラグイン](https://github.com/gengojs?utf8=%E2%9C%93&query=plugin)に関してであるとは異なる場合があります。開発者のプラグインのドキュメントを参照してください。
 :::
 
 ### i18n
@@ -76,7 +76,7 @@ __('greeting.hello.informal');
 __('greeting.hello.person.informal', 'Bob');
 
 // 基本的なドットフレーズと文字列補完は「Bob、おっす」に戻ります
-__('greeting.hello.person.informal', {name:'Bob'});
+__('greeting.hello.person.informal', { name:'Bob' });
 ```
 
 :::
@@ -107,6 +107,101 @@ __('[You took {n,numbers} pictures].since.date', { n:4000, d:new Date() }, { par
 // 基本的なドットフレーズとメッセージ・フォーマットは
 //「You took 4,000 pictures since Jan 1, 2015 9:33:04 AM」に戻ります
 __('pictures.since.date', { n:4000, d:new Date() }, { format: 'parser' });
+```
+
+:::
+
+## l10n
+
+### API
+
+::: gengo
+The following API is respect to the default localization plugin. Please refer the the developer's plugin documentation.
+:::
+
+
+::: gengo
+
+```javascript
+// 現在のロケールで、日付、時刻、数値、またはMomentのインスタンスを返します
+__l().[API Method]()
+// 指定されたロケールでの日付、時刻、数値、またはMomentのインスタンスを返します
+__l(locale: String).[API Method]()
+```
+:::
+
+#### `date()`
+
+::: gengo
+
+```javascript
+// Tokeiのインスタンスを返します
+__l().date();
+```
+
+:::
+
+#### `time()`
+
+::: gengo
+
+```javascript
+// Tokeiのインスタンスを返します
+__l().time();
+```
+
+:::
+
+#### `number()`
+
+::: gengo
+
+```javascript
+// Tokeiのインスタンスを返します
+__l().number();
+```
+
+:::
+
+#### `moment()`
+
+::: gengo
+
+```javascript
+// Momentのインスタンスを返します
+__l().moment();
+```
+
+:::
+
+
+#### `now()`
+
+::: gengo
+
+```javascript
+
+// 現在の日付を返します
+__l().date().now();
+// 現在の時刻を返します
+__l().time().now();
+
+```
+
+:::
+
+#### `format()`
+
+
+::: gengo
+
+```javascript
+// 日付をフォーマットします
+__l().date().format(/* date: Date */);
+// 時刻をフォーマットします
+__l().time().format(/* date: Date */);
+// 数値をフォーマットします
+__l().number().format(/* number: Number */);
 ```
 
 :::

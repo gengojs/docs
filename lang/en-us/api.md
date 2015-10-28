@@ -1,12 +1,12 @@
-## API
+# API
 
 ::: gengo
-The following API is respect to the default plugins and may vary. Please refer the the developer's plugin documentation.
+The following API is respect to the [default plugins](https://github.com/gengojs?utf8=%E2%9C%93&query=plugin) and may vary. Please refer the the developer's plugin documentation.
 :::
 
-### i18n
+## i18n
 
-#### API
+### API
 
 ```javascript
 // String
@@ -21,9 +21,9 @@ __('Hello {{name}}, is today {{weather}}?', { name:'Bob', weather: 'sunny' });
 
 ```
 
-#### Notations
+### Notations
 
-##### Phrase Notation
+#### Phrase Notation
 
 ::: gengo
 
@@ -42,7 +42,7 @@ __('Hello %s', 'Bob');
 
 :::
 
-##### Bracket Notation
+#### Bracket Notation
 
 ::: gengo
 
@@ -64,7 +64,7 @@ __('[Hello {{name}}].informal', {name:'Bob'});
 
 :::
 
-##### Dot Notation
+#### Dot Notation
 
 ::: gengo
 
@@ -78,12 +78,12 @@ __('greeting.hello.informal');
 __('greeting.hello.person.informal', 'Bob');
 
 // A basic dot phrase with interpolation returns 'Bob おっす'
-__('greeting.hello.person.informal', {name:'Bob'});
+__('greeting.hello.person.informal', { name:'Bob' });
 ```
 
 :::
 
-#### Message Format
+### Message Format
 
 ::: gengo
 Because plurality is not supported, the default parser uses [message-format](https://github.com/format-message/message-format)
@@ -110,6 +110,101 @@ __('[You took {n,numbers} pictures].since.date', { n:4000, d:new Date() }, { par
 // A basic dot phrase with message formatting
 // returns "You took 4,000 pictures since Jan 1, 2015 9:33:04 AM"
 __('pictures.since.date', { n:4000, d:new Date() }, { format: 'parser' });
+```
+
+:::
+
+## l10n
+
+### API
+
+::: gengo
+The following API is respect to the default localization plugin. Please refer the the developer's plugin documentation.
+:::
+
+
+::: gengo
+
+```javascript
+// Returns the date, time, number, or moment in the current locale
+__l().[API Method]()
+// Returns the date, time, number, or moment with a specified locale
+__l(locale: String).[API Method]()
+```
+:::
+
+#### `date()`
+
+::: gengo
+
+```javascript
+// Returns an instance of Tokei
+__l().date();
+```
+
+:::
+
+#### `time()`
+
+::: gengo
+
+```javascript
+// Returns an instance of Tokei
+__l().time();
+```
+
+:::
+
+#### `number()`
+
+::: gengo
+
+```javascript
+// Returns an instance of Tokei
+__l().number();
+```
+
+:::
+
+#### `moment()`
+
+::: gengo
+
+```javascript
+// Returns an instance of Moment
+__l().moment();
+```
+
+:::
+
+
+#### `now()`
+
+::: gengo
+
+```javascript
+
+// Returns the current date
+__l().date().now();
+// Returns the current time
+__l().time().now();
+
+```
+
+:::
+
+#### `format()`
+
+
+::: gengo
+
+```javascript
+// Formats the date
+__l().date().format(/* date: Date */);
+// Formats the time
+__l().time().format(/* date: Date */);
+// Formats the number
+__l().number().format(/* number: Number */);
 ```
 
 :::

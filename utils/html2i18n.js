@@ -5,15 +5,24 @@ var jsdom     = require("jsdom"),
   pluginName  = "gulp-i18n",
   _           = require('lodash'),
   Path        = require('path');
-
+/**
+ * Returns the file's name
+ * @param {String} path The path of the file.
+ * @return {String} The file's name
+ */
 function getFileName(path) {
   return /dist\/[\s\S]+\/([\s\S]+)/g
     .exec(Path.normalize(path))[1];
 }
 
-function stripScripts(s) {
+/**
+ * Strips the script tags from the HTML.
+ * @param {String} html The html to strip the tags.
+ * @return {String} The script stripped HTML.
+ */
+function stripScripts(html) {
   var div = this.createElement('div');
-  div.innerHTML = s;
+  div.innerHTML = html;
   var scripts = div.getElementsByTagName('script');
   var i = scripts.length;
   while (i--) {
@@ -21,14 +30,23 @@ function stripScripts(s) {
   }
   return div.innerHTML;
 }
+/**
+ * Returns the EJS placeholder for i18n
+ */
 function i18n(tag) {
   return '<%= __("' + tag + '") %>';
 }
 
+/**
+ * Returns the unescaped EJS placeholder for i18n
+ */
 function unescapedi18n(tag){
   return '<%= _.unescape(__("' + tag + '")) %>';
 }
 
+/**
+ * Mutates the HTML
+ */
 function mutator($, window, path) {
   var counts = {
     p: 1,
